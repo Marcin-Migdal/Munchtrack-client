@@ -1,5 +1,5 @@
 {
-  "mainTitle": "Serwis Munchtrack został stworzony z myślą aby umożliwić łatwiejsze śledzenie postępu rozgrywki w grze karcianej munchkin, serwis umożliwia tworzenie pokoi w których można zapisywać postęp swojej postaci oraz śledzić postęp postaci swoich przeciwników.",
+  "mainTitle": "Serwis Munchtrack został stworzony z myślą aby umożliwić łatwiejsze śledzenie rozgrywki w grze karcianej munchkin, serwis umożliwia założenie konta użytkownika oraz stworzenie pokoi do których mogą dołączać inni użytkownicy, po dołączeniu do pokoju mogą oni zapisywać postęp swojej postaci oraz obserwować postacie swoich przeciwników.",
   "title": {
     "rooms": "Pokoje",
     "sortRooms":"Sortowanie pokoi",
