@@ -22,7 +22,6 @@ export default function Game({ classes }) {
   const location = useLocation();
   const history = useHistory();
 
-
   const { room, layout, currentUser, currentUserLoading } = useSelector((state) => {
     return {
       room: state.room.room,
@@ -87,6 +86,7 @@ export default function Game({ classes }) {
     }
 
     const fetchPlayerStatuses = () => {
+      console.log(location.state.roomId)
       playerStatusService.getAllPlayersStatusesInRoom(location.state.roomId)
         .then(playerStatuses => {
           if (playerStatusRefreshFlag === 0) {

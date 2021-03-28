@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import * as AiIcons from "react-icons/ai"
 import * as BiIcons from "react-icons/bi"
+import * as IoIcons from "react-icons/io"
 import authenticationService from '../../api/authentication.api';
-import ListComponent from '../../components/ListComponent/ListComponent';
 import SideMenuButton from '../../components/SideMenuButton/SideMenuButton';
-import { SideMenuData } from '../../utils/SideMenuUtils';
 import MyHr from '../../components/MyHr/MyHr';
 import { classes } from '../../components/SideMenuButton/SideMenuButton.styles';
 import { mobileClasses } from '../../components/SideMenuButton/SideMenuButtonMobile.styles';
@@ -33,7 +32,15 @@ export default function SideMenu({ closeSideMenu, style }) {
         onClickYes={() => leaveRoom(path)}
         onClickNo={() => setModal()} />
     )
-    layout.mobile && closeSideMenu()
+  }
+
+  const showSignOutModal = () => {
+    setModal(
+      <ConfirmationModal
+        text={t('menu:sideMenu.modal.signOut')}
+        onClickYes={() => signOut()}
+        onClickNo={() => setModal()} />
+    )
   }
 
   const leaveRoom = (path) => {
@@ -44,56 +51,57 @@ export default function SideMenu({ closeSideMenu, style }) {
       })
   }
 
-  const showSignOutModal = () => {
-    setModal(
-      <ConfirmationModal
-        text={t('menu:sideMenu.modal.signOut')}
-        onClickYes={() => signOut()}
-        onClickNo={() => setModal()} />
-    )
-    layout.mobile && closeSideMenu()
-  }
-
   const signOut = () => {
     setModal()
     authenticationService.signOut();
   }
 
-  const SignOutButton = () => {
-    return (
-      location.pathname === links.game ?
-        <SideMenuButton
-          path={links.rooms}
-          icon={<BiIcons.BiArrowBack />}
-          text={t('buttons:back')}
-          classes={styles}
-          onClick={path => showExitModal(path)}
-        /> :
-        <SideMenuButton
-          icon={<AiIcons.AiOutlineLogout />}
-          text={t('menu:sideMenu.button.signOut')}
-          classes={styles}
-          onClick={showSignOutModal} />
-    )
+  const onClick = (path) => {
+    layout.mobile && closeSideMenu()
+    if (history.location.pathname === links.game) {
+      showExitModal(path)
+      return;
+    }
+
+    if (!path) {
+      showSignOutModal()
+      return;
+    }
+    history.push(path);
   }
 
   return (
     <div className={style}>
       <MyHr />
       <ul>
-        <ListComponent data={SideMenuData} mapFunction={(item, index) => {
-          return (
-            <li key={index} onClick={closeSideMenu}>
-              <SideMenuButton
-                path={item.path}
-                icon={item.icon}
-                text={t('menu:sideMenu.button.' + item.page)}
-                classes={styles}
-                onClick={path => showExitModal(path)} />
-            </li>
-          )
-        }} />
-        <SignOutButton />
+        <li >
+          <SideMenuButton
+            icon={<AiIcons.AiFillHome />}
+            text={t('menu:sideMenu.button.rooms')}
+            classes={styles}
+            onClick={() => onClick(links.rooms)} />
+        </li>
+        <li >
+          <SideMenuButton
+            icon={<IoIcons.IoIosSettings />}
+            text={t('menu:sideMenu.button.settings')}
+            classes={styles}
+            onClick={() => onClick(links.settings)} />
+        </li>
+        <li >
+          {location.pathname === links.game ?
+            <SideMenuButton
+              icon={<BiIcons.BiArrowBack />}
+              text={t('buttons:back')}
+              classes={styles}
+              onClick={() => onClick(links.rooms)}
+            /> :
+            <SideMenuButton
+              icon={<AiIcons.AiOutlineLogout />}
+              text={t('menu:sideMenu.button.signOut')}
+              classes={styles}
+              onClick={() => { onClick() }} />}
+        </li>
       </ul>
       {modal && modal}
     </div>

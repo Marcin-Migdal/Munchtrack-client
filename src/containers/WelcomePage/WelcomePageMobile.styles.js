@@ -37,7 +37,7 @@ export const mobileClasses = makeStyles(theme => ({
   },
 
   button: {
-    width: '32vw',
+    width: '33vw',
     margin: '0.35vh 0',
     fontWeight: 600,
     fontSize: '1.4vh',
