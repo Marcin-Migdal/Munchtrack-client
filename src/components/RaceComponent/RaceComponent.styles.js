@@ -127,8 +127,7 @@ export const classes = makeStyles(theme => ({
   },
 
   infoModal: {
-    width: '30vw',
-    padding: '1vh',
+    padding: '1.5vh',
     border: '1px solid',
     borderRadius: '12px',
     position: 'fixed',
@@ -138,52 +137,36 @@ export const classes = makeStyles(theme => ({
     backgroundColor: theme.palette.secondary.main,
     '& #infoModalTitle': {
       textAlign: 'center',
-      fontSize: '4.5vh',
+      fontSize: '4vh',
       fontWeight: 600,
-      marginLeft: '1vw',
     },
     '& #infoModalContent': {
+      maxWidth: '30vw',
       textAlign: 'center',
       fontSize: '2.5vh',
-      marginTop: '2vh',
+      marginTop: '1.5vh',
     },
   },
 
   infoModalMobile: {
-    width: '80vw',
     padding: '1vh',
     border: '1px solid',
     borderRadius: '12px',
     position: 'fixed',
-    left: '10vw',
+    left: '7.5vw',
     top: '30vh',
     zIndex: 3,
     backgroundColor: theme.palette.secondary.main,
     '& #infoModalTitle': {
-      marginLeft: '1.5vw',
       textAlign: 'center',
       fontSize: '3.5vh',
       fontWeight: 500,
     },
     '& #infoModalContent': {
+      maxWidth: '80vw',
       textAlign: 'center',
       fontSize: '2.25vh',
       marginTop: '1vh',
     },
-  },
-
-  modalSubContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: '1vh',
-  },
-
-  raceIcon: {
-    height: '13vh',
-    width: '13vh',
-    fontSize: '7vh',
-    color: 'inherit',
   },
 }))

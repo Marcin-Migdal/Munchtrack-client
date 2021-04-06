@@ -3,6 +3,11 @@ import jwt_decode from 'jwt-decode';
 
 const backendUrl = 'http://localhost:5000'
 class ApiService {
+  httpGETNoValidation(url) {
+    return axios.get(backendUrl + url, this.authorize())
+      .then(this.mapResponse);
+  }
+
   httpGET(url) {
     if (this.validateToken()) {
       return axios.get(backendUrl + url, this.authorize())
@@ -12,13 +17,14 @@ class ApiService {
     }
   }
 
+  httpGETAvatarNoValidation(url) {
+    return axios.get(backendUrl + url, this.authorizeWithBlob())
+      .then(this.mapResponse);
+  }
+
   httpGETAvatar(url) {
-    if (this.validateToken()) {
-      return axios.get(backendUrl + url, this.authorizeWithBlob())
-        .then(this.mapResponse);
-    } else {
-      return this.ifExpired()
-    }
+    return axios.get(backendUrl + url, this.authorizeWithBlob())
+      .then(this.mapResponse);
   }
 
   httpPOST(url, data = {}) {
@@ -91,7 +97,7 @@ class ApiService {
   }
 
   validateToken = () => {
-    if(!localStorage.getItem('token')){
+    if (!localStorage.getItem('token')) {
       return false;
     }
     const decodedToken = jwt_decode(localStorage.getItem('token'))

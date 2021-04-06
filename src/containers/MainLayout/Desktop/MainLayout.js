@@ -1,4 +1,4 @@
-import React, { useState, Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { IconContext } from 'react-icons';
 import { useTheme } from '@material-ui/core';
@@ -35,7 +35,7 @@ export default function MainLayout() {
   const { t } = useTranslation(['menu']);
   const theme = useTheme();
 
-  const { layout, loaded } = useSelector(layoutSelector)
+  const { loaded } = useSelector(layoutSelector)
 
   const styles = classes();
 
@@ -56,7 +56,7 @@ export default function MainLayout() {
             <Navbar toggleSideMenu={toggleSideMenu} />
           </div>
           <div className={styles.bottomContainerSideMenu}>
-            <SideMenu style={layout.sideMenuActive ? styles.sideMenuContainerEnabled : styles.sideMenuContainerDisabled} />
+            <SideMenu/>
             <Suspense fallback={<FallbackLoading />}>
               <div className={styles.contentContainer}>
                 <Route path={links.home} render={props => <Home {...props} classes={homePageClasses} />} />

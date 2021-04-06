@@ -62,9 +62,7 @@ export const desktopClasses = makeStyles(theme => ({
 
   image: {
     maxWidth: '44vh',
-    maxHeight: '26vh',
     width: '22vw',
-    height: '13vw',
     margin: '0.1vh 0.125vw',
     borderRadius: '22px',
   }

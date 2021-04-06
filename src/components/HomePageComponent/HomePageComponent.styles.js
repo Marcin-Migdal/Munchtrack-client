@@ -21,14 +21,23 @@ export const classes = makeStyles(theme => ({
     }
   },
 
-  image: {
+  imageContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     maxWidth: '77vh',
     maxHeight: '45vh',
     width: '38.5vw',
     height: '27.5vw',
     borderRadius: '16px',
     border: '1px solid',
-    borderColor: theme.palette.primary.main
+    borderColor: theme.palette.primary.main,
+    overflow: 'hidden'
+  },
+
+  image: {
+    width: '100%',
+    height: '100%',
   },
 
   imageButtonContainer: {

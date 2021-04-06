@@ -3,7 +3,6 @@ import { classes } from './RaceComponent.styles';
 import { FormControl, Input, InputLabel, MenuItem, Select } from '@material-ui/core'
 import playerStatusService from '../../api/playerStatus.api';
 import * as AiIcons from "react-icons/ai"
-import MyAvatar from '../MyAvatar/MyAvatar';
 import InfoModal from '../InfoModal/InfoModal';
 import { useTranslation } from 'react-i18next';
 
@@ -90,10 +89,7 @@ export default function RaceComponent({ mobile, isCurrentPlayer, playerStatus, r
         onClick={() => serRaceInfoModalIsVisible(false)}
         customModal={
           <div className={mobile ? styles.infoModalMobile : styles.infoModal}>
-            <div className={styles.modalSubContainer}>
-              <MyAvatar customStyles={styles.raceIcon} inGameName={playerRace.name} />
-              <p id='infoModalTitle'>{playerRace.name}</p>
-            </div>
+            <p id='infoModalTitle'>{playerRace.name}</p>
             <p id='infoModalContent'>{playerRace.description}</p>
           </div>
         } />
@@ -117,7 +113,7 @@ export default function RaceComponent({ mobile, isCurrentPlayer, playerStatus, r
               className={mobile ? styles.buttonStyleMobile : styles.buttonStyle}
               onClick={() => setShowRaceInput(true)}>
               {t('buttons:change')}
-          </button>
+            </button>
           }
         </div> :
         <div className={styles.selectContainer}>
@@ -126,7 +122,7 @@ export default function RaceComponent({ mobile, isCurrentPlayer, playerStatus, r
               className={styles.selectedInput}
               id="open-select-label">
               {t('buttons:choose')}
-          </InputLabel>
+            </InputLabel>
             <SelectComponent />
           </FormControl>
 
