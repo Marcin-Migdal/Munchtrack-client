@@ -34,7 +34,7 @@ export default function RaceComponent({ mobile, isCurrentPlayer, playerStatus, r
 
   const getMenuItemsContent = () => {
     let tempMenuItemsContent;
-    if (!isSecondRace && playerStatus.secondPlayerRaceDto.id === 0) {
+    if (!isSecondRace && playerStatus.secondPlayerRaceDto.id === 1) {
       tempMenuItemsContent = selectContent.filter((item) => {
         return (item.id !== playerStatus.playerRaceDto.id)
       })
@@ -74,6 +74,7 @@ export default function RaceComponent({ mobile, isCurrentPlayer, playerStatus, r
         variant='filled'
         labelId="open-select-label"
         className={styles.select}
+        defaultValue=""
         value={raceId}
         onChange={handleChange}
         input={<Input />}
@@ -126,7 +127,7 @@ export default function RaceComponent({ mobile, isCurrentPlayer, playerStatus, r
             <SelectComponent />
           </FormControl>
 
-          {(raceId || raceId === 0) ?
+          {raceId ?
             <button
               id='saveButton'
               className={mobile ? styles.buttonStyleMobile : styles.buttonStyle}
