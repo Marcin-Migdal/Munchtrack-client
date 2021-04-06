@@ -35,7 +35,7 @@ export default function ClassComponent({ mobile, isCurrentPlayer, playerStatus, 
 
   const getMenuItemsContent = () => {
     let tempMenuItemsContent;
-    if (!isSecondClass && playerStatus.secondPlayerClassDto.id === 0) {
+    if (!isSecondClass && playerStatus.secondPlayerClassDto.id === 1) {
       tempMenuItemsContent = selectContent.filter((item) => {
         return (item.id !== playerStatus.playerClassDto.id)
       })
@@ -75,6 +75,7 @@ export default function ClassComponent({ mobile, isCurrentPlayer, playerStatus, 
         variant='filled'
         labelId="open-select-label"
         className={styles.select}
+        defaultValue=""
         value={classId}
         onChange={handleChange}
         input={<Input />}
@@ -127,7 +128,7 @@ export default function ClassComponent({ mobile, isCurrentPlayer, playerStatus, 
             <SelectComponent />
           </FormControl>
 
-          {(classId || classId === 0) ?
+          {classId ?
             <button
               id='saveButton'
               className={mobile ? styles.buttonStyleMobile : styles.buttonStyle}

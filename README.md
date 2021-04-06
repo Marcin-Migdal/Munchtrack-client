@@ -6,8 +6,8 @@ Munchtrack is a Service created with a though to allow munchkin card game to be 
 This repository contains front-end part of the service, it is made using React and Javascript and other external libraries like:<br />
 - [Material-ui](https://material-ui.com/)<br />
 - [i18next](https://react.i18next.com/)<br />
-- [React-redux](https://react-redux.js.org)<br />
-- React-hooks<br />
+- [React-Redux](https://react-redux.js.org)<br />
+- [React-Router](https://reactrouter.com)<br />
 
 ## Requirements:
 - Back-end side of the project that you can find here: https://github.com/Marcin-Migdal/Munchkin-server
