@@ -7,6 +7,16 @@ import * as IoIcons from "react-icons/io"
 import { IconContext } from 'react-icons/lib';
 import ListComponent from '../../components/ListComponent/ListComponent';
 
+import roomsImage from '../../resources/images/desktop/rooms.png'
+import roomImage from '../../resources/images/desktop/room.png'
+import switchClassGameImage from '../../resources/images/desktop/switchClassGame.png'
+import searchResultImage from '../../resources/images/desktop/searchResult.png'
+
+import roomsMobileImage from '../../resources/images/mobile/rooms.png'
+import roomMobileImage from '../../resources/images/mobile/room.png'
+import switchClassGameMobileImage from '../../resources/images/mobile/switchClassGame.png'
+import searchResultMobileImage from '../../resources/images/mobile/searchResult.png'
+
 export default function WelcomePage({ classes }) {
   const { t } = useTranslation(['auth', 'inputLabels']);
   const mobile = useMediaQuery('(max-width:620px)');
@@ -14,13 +24,9 @@ export default function WelcomePage({ classes }) {
 
   const [contentArrayIndex, setContentArrayIndex] = useState(0);
 
-  const iconFolder = mobile ? 'mobile' : 'desktop'
-  const imageArray = [
-    '/images/' + iconFolder + '/rooms.png',
-    '/images/' + iconFolder + '/room.png',
-    '/images/' + iconFolder + '/switchClassGame.png',
-    '/images/' + iconFolder + '/searchResult.png'
-  ]
+  const imageDesktopArray = [roomsImage, roomImage, switchClassGameImage, searchResultImage]
+  const imageMobileArray = [roomsMobileImage, roomMobileImage, switchClassGameMobileImage, searchResultMobileImage]
+  const imageArray = mobile ? imageMobileArray : imageDesktopArray
 
   const styles = classes();
 

@@ -9,6 +9,22 @@ class UserService {
     return api.httpGETAvatar('/api/auth/getAvatar/' + id);
   }
 
+  getImageNoValidation(mobile, imageName) {
+    return api.httpGETAvatarNoValidation('/api/auth/getImage/' + mobile + "/" + imageName);
+  }
+
+  getImage(mobile, imageName) {
+    return api.httpGETAvatar('/api/auth/getImage/' + mobile + "/" + imageName);
+  }
+
+  getImageFileNamesNoValidation(isMobile) {
+    return api.httpGETNoValidation('/api/auth/getImageFileNames/' + isMobile);
+  }
+  
+  getImageFileNames(isMobile) {
+    return api.httpGET('/api/auth/getImageFileNames/' + isMobile);
+  }
+
   editUser(userEditRequest) {
     return api.httpPUT('/api/auth/editUser/', userEditRequest);
   }

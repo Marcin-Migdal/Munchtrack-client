@@ -59,7 +59,7 @@ export default function MainLayoutMobile() {
           <NavbarMobile toggleSideMenu={toggleSideMenu} sideMenuActive={layout.sideMenuActive} />
         </div>
         <div className={styles.bottomContainer}>
-          <SideMenu closeSideMenu={closeSideMenu} style={layout.sideMenuActive ? styles.sideMenuEnabled : styles.sideMenuDisabled} />
+          <SideMenu closeSideMenu={closeSideMenu}/>
           <Suspense fallback={<FallbackLoading />}>
             <div className={styles.contentContainer}>
               <Route path={links.home} render={props => <Home {...props} classes={homePageClasses} />} />

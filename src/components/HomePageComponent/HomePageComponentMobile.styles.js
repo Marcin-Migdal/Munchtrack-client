@@ -22,13 +22,23 @@ export const mobileClasses = makeStyles(theme => ({
     }
   },
 
-  image: {
+  imageContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '15vh',
     height: '30vh',
     borderRadius: '16px',
     border: '1px solid',
-    borderColor: theme.palette.primary.main
+    borderColor: theme.palette.primary.main,
+    overflow: 'hidden'
   },
+
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+
 
   imageButtonContainer: {
     position: 'absolute',

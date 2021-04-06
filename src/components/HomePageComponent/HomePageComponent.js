@@ -5,10 +5,42 @@ import { classes } from './HomePageComponent.styles'
 import { mobileClasses } from './HomePageComponentMobile.styles'
 import MyHr from '../MyHr/MyHr';
 import * as IoIcons from "react-icons/io"
+import { useEffect } from 'react';
+import userService from '../../api/user.api';
+import LoadingComponent from '../LoadingComponent/LoadingComponent';
 
+const cache = {};
 export default function HomePageComponent({ content, index, sideMenuActive, mobile }) {
   const [contentArrayIndex, setContentArrayIndex] = useState(0);
-  const { buttonText, url, imagePath, description, title } = content[contentArrayIndex]
+  const [image, setImage] = useState([]);
+
+  const { buttonText, url, imageName, description, title } = content[contentArrayIndex]
+
+  useEffect(() => {
+    let isMounted = true
+    const getImage = () => {
+      if (cache[imageName]) {
+        setImage(cache[imageName])
+      } else {
+        userService.getImage(mobile, imageName)
+          .then(res => {
+            setImage(URL.createObjectURL(res))
+            cache[imageName] = URL.createObjectURL(res);
+          })
+          .catch(e => {
+            setImage()
+            console.log(e)
+          })
+      }
+    }
+
+    getImage()
+
+    return () => {
+      isMounted = false
+    }
+  }, [contentArrayIndex]);
+
 
   const styles = mobile ? mobileClasses() : classes();
 
@@ -19,7 +51,14 @@ export default function HomePageComponent({ content, index, sideMenuActive, mobi
   const ImageContent = () => {
     return (
       <div id='imageContainer' className={styles.subContainer}>
-        <img className={styles.image} src={imagePath} />
+        {image ?
+          <div className={styles.imageContainer}>
+            <img className={styles.image} src={image} />
+          </div> :
+          <div className={styles.imageContainer}>
+            <LoadingComponent />
+          </div>
+        }
         {content.length > 1 &&
           <div className={styles.imageButtonContainer}>
             <IconButton onClick={prevContent} disabled={contentArrayIndex < 1}>

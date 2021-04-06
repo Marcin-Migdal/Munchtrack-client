@@ -65,7 +65,6 @@ export const mobileClasses = makeStyles(theme => ({
   },
 
   image: {
-    height: '50vh',
     width: '50vw',
     margin: '2vh 0',
     border: '1px solid',

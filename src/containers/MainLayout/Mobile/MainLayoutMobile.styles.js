@@ -24,26 +24,6 @@ export const classes = makeStyles( theme => ({
     marginTop:'16vw',
   },
 
-  sideMenuEnabled: {
-    width: '90vw',
-    height: '100%',
-    position: 'fixed',
-    transition: '100ms',
-    left: 0,
-    zIndex: 2,
-    backgroundColor: theme.palette.background.main,
-  },
-
-  sideMenuDisabled:{
-    width: '90vw',
-    height: '100%',
-    position: 'fixed',
-    transition: '200ms',
-    left: '-100%',
-    zIndex: 2,
-    backgroundColor: theme.palette.background.main,
-  },
-
   contentContainer: {
     zIndex: 1,
     width:'100%',

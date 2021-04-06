@@ -57,6 +57,14 @@ export default function Game({ classes }) {
       if (!location.state) {
         history.replace(links.rooms);
       }
+      if (!room) {
+        history.replace({
+          pathname: links.room,
+          state: {
+            roomId: location.state.roomId,
+          }
+        });
+      }
     }
 
     isMounted && checkIfEnteredCorrectly()
@@ -86,7 +94,6 @@ export default function Game({ classes }) {
     }
 
     const fetchPlayerStatuses = () => {
-      console.log(location.state.roomId)
       playerStatusService.getAllPlayersStatusesInRoom(location.state.roomId)
         .then(playerStatuses => {
           if (playerStatusRefreshFlag === 0) {
@@ -125,7 +132,6 @@ export default function Game({ classes }) {
   }, [playerStatusRefreshFlag, location, history, currentUser]);
 
   const goToGameSummary = () => {
-    console.log(room)
     history.replace({
       pathname: links.gameSummary,
       state: {

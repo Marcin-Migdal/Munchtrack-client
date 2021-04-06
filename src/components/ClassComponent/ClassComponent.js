@@ -3,7 +3,6 @@ import { classes } from './ClassComponent.styles';
 import { FormControl, Input, InputLabel, MenuItem, Select } from '@material-ui/core'
 import playerStatusService from '../../api/playerStatus.api';
 import * as AiIcons from "react-icons/ai"
-import MyAvatar from '../MyAvatar/MyAvatar';
 import InfoModal from '../InfoModal/InfoModal';
 import { useTranslation } from 'react-i18next';
 
@@ -91,10 +90,7 @@ export default function ClassComponent({ mobile, isCurrentPlayer, playerStatus, 
         onClick={() => setClassInfoModal()}
         customModal={
           <div className={mobile ? styles.infoModalMobile : styles.infoModal}>
-            <div className={styles.modalSubContainer}>
-              <MyAvatar customStyles={styles.classIcon} inGameName={playerClass.name} />
-              <p id='infoModalTitle'>{playerClass.name}</p>
-            </div>
+            <p id='infoModalTitle'>{playerClass.name}</p>
             <p id='infoModalContent'>{playerClass.description}</p>
           </div>
         } />
@@ -109,7 +105,7 @@ export default function ClassComponent({ mobile, isCurrentPlayer, playerStatus, 
           <button
             id='modalButton'
             className={mobile ? styles.buttonStyleMobile : styles.buttonStyle}
-            onClick={() => setPlayerInfoModal()}>
+            onClick={setPlayerInfoModal}>
             {playerClass.name}
           </button>
           {(isCurrentPlayer && !onlyRead) &&
